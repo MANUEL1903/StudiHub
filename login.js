@@ -1,4 +1,4 @@
-function initialize() {
+function initialize() {           //informacion para conectarnos a la base de datos de firestore
   const config = {
     apiKey: "AIzaSyDpymKRk8FMdhsOT1OxJdZBcD9ixTzCeF4",
     authDomain: "app-de-estudio.firebaseapp.com",
@@ -28,7 +28,6 @@ function registerUser(email, pass, name, school, e, database) {
     };
 
     database.doc('Usuarios/' + email).set(data);
-
 
   }, function(error) {
     var errorCode = error.code;
