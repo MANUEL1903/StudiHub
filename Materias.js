@@ -1,4 +1,4 @@
-function GetMaterias (name, database) {
+function GetMaterias (nombreEscuela, database) {
   var materiaRef = database.collection('Materias');
   var allMaterias = [];
   materiaRef.get()

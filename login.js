@@ -14,17 +14,13 @@ function initialize() {           //informacion para conectarnos a la base de da
 
 function registerUser(email, pass, name, school, e, database) {
   const auth = firebase.auth();
-
-  var usu = database.collection('Usuarios').doc(name);
-  console.log(usu);
-
+  console.log(usu); // eliminar. para hacer pruebas
   const promise = auth.createUserWithEmailAndPassword(email, pass).then(function(user) {
     var user = firebase.auth().currentUser;
-
     var data = {
-       name: name,
-       Escuela: school,
-       email: email,
+        name: name,
+        Escuela: school,
+        email: email,
     };
 
     database.doc('Usuarios/' + email).set(data);
@@ -43,9 +39,9 @@ function logIn (email, pass, database){
     promise.catch(e => console.log(e));
 }
 
-function getusuario(email, database){
+function getUsuario(email, database){
   var usuarioRef = database.collection('Usuarios').doc(email);
-  var aux = 'hola';
+  var usuario = '';
   var getDoc = usuarioRef.get()
     .then(doc => {
       if (!doc.exists) {
@@ -53,16 +49,16 @@ function getusuario(email, database){
         return null;
       } else {
         console.log('Document data:', doc.data());
-        aux = doc.data();
+        usuario = doc.data();
       }
     })
     .catch(err => {
       console.log('Error getting document', err);
     });
-    return aux;
+    return usuario;
 }
 
 
-function logOut(){
+function signOut(){
   firebase.auth().signOut();
 }

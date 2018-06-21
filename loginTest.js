@@ -1,3 +1,4 @@
+// Manuel Jadzinsky
 (function() {
 
   var database = initialize();
@@ -17,10 +18,10 @@
 		//get email and pass
 		const email = txtEmail.value;
 		const pass = txtPassword.value;
-    r = logIn(email, pass, database);
-    usuario = getusuario(email, database);
+    logIn(email, pass, database);
+    usuario = getUsuario(email, database);
     console.log('resultado: ' + usuario);
-    txtColegio.value = usuario.get('Escuela');
+    //txtColegio.value = usuario.get('Escuela');
 	});
 
 	//Add signup event
@@ -35,17 +36,15 @@
 	});
 
 	btnLogout.addEventListener('click', e => {
-    logOut();
+    signOut();
 	});
 
 	//Add a realtime Listener
 	firebase.auth().onAuthStateChanged(firebaseUser => {
 		if(firebaseUser) {
       console.log('logged !!');
-			btnLogout.classList.remove('hide');
 		} else {
 			console.log('not logged in');
-			btnLogout.classList.add('hide');
 		}
 	});
 
@@ -79,6 +78,5 @@
 }, err => {
   console.log(`Encountered error: ${err}`);
 });
-
 
  }());
